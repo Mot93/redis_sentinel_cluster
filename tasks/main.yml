@@ -1,0 +1,38 @@
+---
+#
+# Installing
+#
+- name: yum install the necessary software
+  ansible.builtin.import_tasks: install_yum.yaml
+
+- name:  Make sure a service redis is stopped
+  ansible.builtin.systemd:
+    state: stopped
+    name: redis
+
+- name:  Make sure a service sentinel is stopped
+  ansible.builtin.systemd:
+    state: stopped
+    name: redis-sentinel
+
+#
+# Configuring
+#
+
+- name: Configuring Redis and Sentinel
+  ansible.builtin.import_tasks: config.yaml
+
+#
+# Restarting
+#
+- name: Make sure a service redis is running
+  ansible.builtin.systemd:
+    state: started
+    enabled: yes
+    name: redis
+
+- name: Make sure a service sentinel is running
+  ansible.builtin.systemd:
+    state: started
+    enabled: yes
+    name: redis-sentinel

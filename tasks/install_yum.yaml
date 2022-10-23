@@ -1,0 +1,11 @@
+---
+- name: Install the latest version of epel-release
+  ansible.builtin.yum:
+    name: epel-release
+    state: latest
+
+- name: Install the latest version of Redis
+  ansible.builtin.yum:
+    update_cache: yes
+    name: redis
+    state: latest

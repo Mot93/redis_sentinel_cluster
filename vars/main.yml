@@ -1,0 +1,5 @@
+---
+# vars file for redis_sentinel_cluster
+redis_port: 6379
+sentinel_replicaset_name: "redis_replica"
+sentinel_consensus: 2
