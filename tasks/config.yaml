@@ -1,4 +1,3 @@
----
 #
 # Config redis
 #
@@ -46,7 +45,7 @@
   ansible.builtin.lineinfile:
     path: /etc/redis-sentinel.conf
     regexp: '^sentinel monitor'
-    line: "sentinel monitor {{ sentinel_replicaset_name }} {{ redis_leader_ip }} {{ sentinel_consensus }}"
+    line: "sentinel monitor {{ sentinel_replicaset_name }} {{ redis_leader_ip }} {{ redis_port }} {{ sentinel_consensus }}"
     state: present
 
 - name: "Sentinel: ensure sentinel down-after-milliseconds is set to: {{ sentinel_replicaset_name }} 5000"
